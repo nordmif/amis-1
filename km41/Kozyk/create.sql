@@ -91,7 +91,7 @@ create table ApartmentPhoto
    adress               CHAR(50)             not null,
    apartment_photo      BLOB                 not null,
    photo_desc           CHAR(140)            not null,
-   constraint PK_APARTMENTPHOTO primary key (landlord_role_fk, landlord_email_fk, adress, apartment_photo)
+   constraint PK_APARTMENTPHOTO primary key (landlord_role_fk, landlord_email_fk, adress)
 );
 
 /*==============================================================*/
@@ -181,7 +181,6 @@ create table Facility
    facility_price       FLOAT(8)             not null,
    facility_description CHAR(600)            not null,
    constraint PK_FACILITY primary key (organizer_role_fk, organizer_email_fk, facility_id)
-   constraint FACILITY_UNIQUE UNIQUE (facility_name, facility_adress)
 );
 
 /*==============================================================*/
@@ -255,4 +254,10 @@ alter table Facility
 alter table "User"
    add constraint "FK_USER_USER HAS _ROLE" foreign key (role_name_fk)
       references Role (role_name);
+	  
+alter table FACILITY
+   add constraint FACILITY_UNIQUE UNIQUE (facility_name, facility_adress);
+
+
+
 
